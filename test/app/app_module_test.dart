@@ -6,7 +6,6 @@ import 'package:learn_english/app/modules/vocabulary/domain/entities/result_cont
 import 'package:learn_english/app/modules/vocabulary/domain/usecases/search_by_text.dart';
 import 'package:learn_english/app/modules/vocabulary/domain/usecases/search_by_text_interface.dart';
 import 'package:learn_english/app/modules/vocabulary/external/datasources/reverso_context_datasource.dart';
-import 'package:learn_english/app/modules/vocabulary/infra/datasources/search_datasource_interface.dart';
 import 'package:mockito/mockito.dart';
 import 'package:web_scraper/web_scraper.dart';
 
@@ -39,6 +38,5 @@ main() {
 
   test('change bind', () {
     expect(Modular.get<WebScraper>(), isA<WebScraperMock>());
-    expect(Modular.get<ISearchDataSource>(), isA<ReversoContectDatasource>());
   });
 }
