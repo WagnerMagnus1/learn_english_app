@@ -6,10 +6,11 @@ import 'package:learn_english/app/modules/vocabulary/domain/entities/result_cont
 import 'package:learn_english/app/modules/vocabulary/domain/usecases/search_by_text.dart';
 import 'package:learn_english/app/modules/vocabulary/domain/usecases/search_by_text_interface.dart';
 import 'package:learn_english/app/modules/vocabulary/external/datasources/reverso_context_datasource.dart';
+import 'package:learn_english/app/modules/vocabulary/vocabulary_module.dart';
 import 'package:mockito/mockito.dart';
 import 'package:web_scraper/web_scraper.dart';
 
-import 'modules/vocabulary/utils/reverso_context_response.dart';
+import 'utils/reverso_context_response.dart';
 
 class WebScraperMock extends Mock implements WebScraper {}
 class ReversoContectDatasourceMock extends Mock implements ReversoContectDatasource {}
@@ -17,7 +18,7 @@ class ReversoContectDatasourceMock extends Mock implements ReversoContectDatasou
 main() {
   final webScraper = WebScraperMock();
 
-  initModule(AppModule(), changeBinds: [
+  initModule(VocabularyModule(), changeBinds: [
     Bind((i) => webScraper),
   ]);
   test('Deve recuperar o usecase sem erro', () {
