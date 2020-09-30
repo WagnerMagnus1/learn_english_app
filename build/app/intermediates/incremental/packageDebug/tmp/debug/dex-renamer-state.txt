@@ -1,0 +1,4 @@
+#Sat Aug 29 22:02:50 BRT 2020
+base.0=D\:\\src\\dev\\projects\\learn_english\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
