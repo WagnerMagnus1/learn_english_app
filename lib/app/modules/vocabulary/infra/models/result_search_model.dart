@@ -6,7 +6,7 @@ class ResultSearchModel extends ResultContext {
   final String phrase;
   final String translate;
 
-  ResultSearchModel({this.phrase, this.translate}) : super(phrase: phrase, translate: translate);
+  ResultSearchModel({required this.phrase, required this.translate}) : super(phrase: phrase, translate: translate);
 
   Map<String, dynamic> toMap() {
     return {
@@ -16,8 +16,6 @@ class ResultSearchModel extends ResultContext {
   }
 
   factory ResultSearchModel.fromMap(Map<String, dynamic> map) {
-    if (map == null) return null;
-
     return ResultSearchModel(
       phrase: map['phrase'],
       translate: map['translate'],

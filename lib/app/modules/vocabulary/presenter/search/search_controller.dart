@@ -1,5 +1,5 @@
 import 'package:async/async.dart';
-import 'package:learn_english/app/modules/vocabulary/domain/usecases/search_by_text.dart';
+import 'package:learn_english/app/modules/vocabulary/domain/usecases/search_by_text/search_by_text.dart';
 import 'package:learn_english/app/modules/vocabulary/presenter/search/states/search_state.dart';
 import 'package:mobx/mobx.dart';
 
@@ -16,15 +16,15 @@ abstract class _SearchControllerBase with Store {
   @observable
   SearchState state = StartState();
   
-  CancelableOperation cancellableOperation;
+  CancelableOperation? cancellableOperation;
 
   _SearchControllerBase(this.usecase) {
-    reaction((_) => searchText, (text) async {
+    reaction((_) => searchText, (String text) async {
       stateReaction(text, cancellableOperation);
     }, delay: 500);
   }
 
-  Future stateReaction(String text, [CancelableOperation cancellableOperation]) async {
+  Future stateReaction(String text, [CancelableOperation? cancellableOperation]) async {
     await cancellableOperation?.cancel();
     cancellableOperation = CancelableOperation<SearchState>.fromFuture(makeSearch(text));
     if (text.isEmpty) {

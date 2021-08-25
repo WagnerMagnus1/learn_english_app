@@ -9,15 +9,16 @@ class SearchRepository implements ISearchRepository {
 
   SearchRepository(this.datasource);
   @override
-  Future<Either<FailureSearch, List<ResultContext>>> search(
-      String searchText) async {
+  Future<Either<FailureSearch, List<ResultContext>>> search(String searchText) async {
     try {
       final result = await datasource.getSearch(searchText);
+      if (result.length == 0) return Left(DataNotFound());
+
       return Right(result);
     } on DataSourceError catch (e) {
       return Left(e);
-    } catch(e){
-      return Left(DataSourceError());
+    } on Exception catch (_) {
+      return Left(DataSourceError(message: ''));
     }
   }
 }

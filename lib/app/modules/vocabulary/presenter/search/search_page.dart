@@ -8,7 +8,7 @@ import 'search_controller.dart';
 
 class SearchPage extends StatefulWidget {
   final String title;
-  const SearchPage({Key key, this.title = "Vocabulário"}) : super(key: key);
+  const SearchPage({Key? key, this.title = "Vocabulário"}) : super(key: key);
 
   @override
   _SearchPageState createState() => _SearchPageState();
@@ -67,15 +67,22 @@ class _SearchPageState extends ModularState<SearchPage, SearchController> {
         return ListTile(
           title: Text(item.phrase),
           subtitle: Text(item.translate),
+          onTap: () {
+            print('Clicou.');
+          },
         );
       },
     );
   }
 
   Widget _buildError(FailureSearch error) {
-    if (error is InvalidTextError) {
+    if (error is DataNotFound) {
       return Center(
-        child: Text('Nada encontrado'),
+        child: Text('Nada encontrado!'),
+      );
+    } else if (error is InvalidTextError) {
+      return Center(
+        child: Text('Texto inválido/'),
       );
     } else if (error is DataSourceError) {
       return Center(
@@ -85,7 +92,6 @@ class _SearchPageState extends ModularState<SearchPage, SearchController> {
       return Center(
         child: Text('Ops, ocorreu um erro :/'),
       );
-      // }
     }
   }
 }
